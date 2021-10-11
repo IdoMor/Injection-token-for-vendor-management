@@ -29,6 +29,9 @@
     "vendor-management-using-injection-tokens-e2e": {
       "tags": [],
       "implicitDependencies": ["vendor-management-using-injection-tokens"]
+    },
+    "shared-lib": {
+      "tags": []
     }
   }
 }

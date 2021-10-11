@@ -122,6 +122,32 @@
           }
         }
       }
+    },
+    "shared-lib": {
+      "projectType": "library",
+      "root": "libs/shared-lib",
+      "sourceRoot": "libs/shared-lib/src",
+      "prefix": "vendor-management",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/shared-lib/src/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared-lib/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "cli": {
