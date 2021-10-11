@@ -1,0 +1,151 @@
+{
+  "version": 1,
+  "projects": {
+    "vendor-management-using-injection-tokens": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/vendor-management-using-injection-tokens",
+      "sourceRoot": "apps/vendor-management-using-injection-tokens/src",
+      "prefix": "vendor-management",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/vendor-management-using-injection-tokens",
+            "index": "apps/vendor-management-using-injection-tokens/src/index.html",
+            "main": "apps/vendor-management-using-injection-tokens/src/main.ts",
+            "polyfills": "apps/vendor-management-using-injection-tokens/src/polyfills.ts",
+            "tsConfig": "apps/vendor-management-using-injection-tokens/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/vendor-management-using-injection-tokens/src/favicon.ico",
+              "apps/vendor-management-using-injection-tokens/src/assets"
+            ],
+            "styles": [
+              "apps/vendor-management-using-injection-tokens/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/vendor-management-using-injection-tokens/src/environments/environment.ts",
+                  "with": "apps/vendor-management-using-injection-tokens/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "vendor-management-using-injection-tokens:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "vendor-management-using-injection-tokens:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "vendor-management-using-injection-tokens:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/vendor-management-using-injection-tokens/src/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/vendor-management-using-injection-tokens/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "vendor-management-using-injection-tokens-e2e": {
+      "root": "apps/vendor-management-using-injection-tokens-e2e",
+      "sourceRoot": "apps/vendor-management-using-injection-tokens-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/vendor-management-using-injection-tokens-e2e/cypress.json",
+            "tsConfig": "apps/vendor-management-using-injection-tokens-e2e/tsconfig.e2e.json",
+            "devServerTarget": "vendor-management-using-injection-tokens:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "vendor-management-using-injection-tokens:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/vendor-management-using-injection-tokens-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "vendor-management-using-injection-tokens"
+}
